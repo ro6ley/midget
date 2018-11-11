@@ -3,6 +3,9 @@ language: python
 python:
   - 3.5
 
+services:
+  - redis-server
+
 before_install:
   - export PYTHONPATH=$HOME/builds/ro6ley/midget
   - export PIP_USE_MIRRORS=true
