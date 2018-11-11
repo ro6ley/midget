@@ -12,6 +12,9 @@ django-redis = "*"
 djangorestframework = "*"
 redis = "*"
 coveralls = "*"
+coreapi = "*"
+pygments = "*"
+markdown = "*"
 
 [requires]
 python_version = "3.5"
