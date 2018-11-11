@@ -41,4 +41,3 @@ def create_url(url_to_be_shortened):
     elif not redis_instance.get(strng):
         redis_instance.set(strng, url_to_be_shortened)
         return strng
-
