@@ -1,0 +1,13 @@
+# Don't include migrations
+**/migrations/
+
+# Exclude on MAC devices
+.DS_Store
+
+# Python files
+**/*.pyc
+**/__pycache__
+
+**/.sonarlint
+
+**/db.sqlite3
