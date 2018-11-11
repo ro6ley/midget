@@ -39,13 +39,6 @@ def check_random_string(random_string):
         return False
 
 
-def get_url(random_string):
-    """
-    Find a url from the redis server and return it
-    """
-    return redis_instance.get(random_string)
-
-
 def create_url(url_to_be_shortened):
     """
     Create the shortened URL and save it on Redis
