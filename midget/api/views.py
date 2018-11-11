@@ -38,12 +38,13 @@ def manage_links(request, link=None, *args, **kwargs):
 
     # DELETE action to purge a short url
     elif request.method == "DELETE":
-        try:
+        if redis_instance.get(link):
             redis_instance.delete(link)
             return Response({'status': 'success', 'msg': 'Deleted.'},
                             status=204)
-        except:
-            return Response("Not found", status=404)
+        else:
+            return Response({'status': 'error', 'msg': 'Not found.'},
+                            status=404)
 
     # GET action to get all links or just one link
     elif request.method == "GET":
