@@ -63,7 +63,6 @@ class ShortenerTestCases(TestCase):
         """
         creation_response = self.client.post(self.url, {"url": "http://google.com"})
         created_url = creation_response.data.get('url')
-        print(created_url)
 
         response = self.client.delete('/{}'.format(created_url))
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
