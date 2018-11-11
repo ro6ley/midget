@@ -39,7 +39,7 @@ def manage_links(request, link=None, *args, **kwargs):
     # DELETE action to purge a short url
     elif request.method == "DELETE":
         try:
-            redis_instance.delete(request.data['url'])
+            redis_instance.delete(link)
             return Response({'status': 'success', 'msg': 'Deleted.'},
                             status=204)
         except:
@@ -84,13 +84,3 @@ def manage_links(request, link=None, *args, **kwargs):
                 'status': 'success'
             }
             return Response(response, status=200)
-
-
-def validate_url(url_string):
-    """
-    Method to check if the URL passed is a valid url
-    """
-    if url_string.startsWith('http://') or url_string.startsWith('https://'):
-        return True
-    else:
-        return False
