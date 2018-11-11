@@ -1,4 +1,5 @@
 -i https://pypi.org/simple
+autopep8==1.4.2
 certifi==2018.10.15
 chardet==3.0.4
 coreapi==2.3.3
@@ -14,6 +15,7 @@ itypes==1.1.0
 jinja2==2.10
 markdown==3.0.1
 markupsafe==1.1.0
+pycodestyle==2.4.0
 pygments==2.2.0
 pytz==2018.7
 redis==2.10.6
