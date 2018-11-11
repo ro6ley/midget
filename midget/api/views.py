@@ -78,10 +78,3 @@ def manage_links(request, link=None, *args, **kwargs):
                     'status': 'error'
                 }
                 return Response(response, status=404)
-        else:
-            # Redirect to home
-            response = {
-                'msg': 'Welcome to mdgt.url',
-                'status': 'success'
-            }
-            return Response(response, status=200)
