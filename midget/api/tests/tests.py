@@ -56,3 +56,15 @@ class ShortenerTestCases(TestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data.get('status'), "success")
         self.assertTrue(response.data.get('count'))
+
+    def test_delete_url(self):
+        """
+        Test that a shortened url can be deleted
+        """
+        creation_response = self.client.post(self.url, {"url": "http://google.com"})
+        created_url = creation_response.data.get('url')
+        print(created_url)
+
+        response = self.client.delete('/{}'.format(created_url))
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertEqual(response.data.get('status'), "success")     
