@@ -17,6 +17,7 @@ script:
   - python midget/manage.py makemigrations api --settings=settings.testing
   - python midget/manage.py migrate --settings=settings.testing
   - coverage run --source=midget midget/manage.py test --settings=settings.testing midget/api --noinput
+  - coverage report -m
 
 # run coveralls after successful tests
 after_success:
