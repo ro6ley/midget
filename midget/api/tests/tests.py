@@ -51,6 +51,7 @@ class ShortenerTestCases(TestCase):
         """
         Test that all the urls in the redis store can be fetched
         """
+        self.client.post(self.url, {"url": "http://google.com"})
         response = self.client.get('/all')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data.get('status'), "success")
