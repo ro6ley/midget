@@ -54,4 +54,4 @@ class ShortenerTestCases(TestCase):
         response = self.client.get('/all')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data.get('status'), "success")
-        self.assertTrue(response.data.get('links'))
+        self.assertTrue(response.data.get('count'))
