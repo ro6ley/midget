@@ -17,7 +17,7 @@ class ShortenerTestCases(TestCase):
         """
         self.client = APIClient()
         self.url = '/api/links/'
-    
+
     def test_shorten_url(self):
         """
         Test that a URL can be shortened
@@ -46,8 +46,8 @@ class ShortenerTestCases(TestCase):
 
         fetch_response = self.client.get('/xyzas')
         # Confirm that it returns an error
-        self.assertEqual(fetch_response.status_code, status.HTTP_404_NOT_FOUND)        
-    
+        self.assertEqual(fetch_response.status_code, status.HTTP_404_NOT_FOUND)
+
     def test_shorten_invalid_url(self):
         """
         Test that shortening an invalid URL raises an error
@@ -71,12 +71,13 @@ class ShortenerTestCases(TestCase):
         """
         Test that a shortened url can be deleted
         """
-        creation_response = self.client.post(self.url, {"url": "http://google.com"})
+        creation_response = self.client.post(
+            self.url, {"url": "http://google.com"})
         created_url = creation_response.data.get('url')
 
         response = self.client.delete('/{}'.format(created_url))
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
-        self.assertEqual(response.data.get('status'), "success")     
+        self.assertEqual(response.data.get('status'), "success")
 
     def test_delete_nonexisting_url(self):
         """
@@ -84,4 +85,4 @@ class ShortenerTestCases(TestCase):
         """
         response = self.client.delete('/xyzas')
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
-        self.assertEqual(response.data.get('status'), "error")          
+        self.assertEqual(response.data.get('status'), "error")
