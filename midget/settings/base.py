@@ -134,10 +134,10 @@ LOGGING = {
     'disable_existing_loggers': False,
     'formatters': {
         'verbose': {
-            'format': '| %(asctime)s | Severity=%(levelname)s | Module=%(module)s | %(message)s'
+            'format': '| %(asctime)s | Severity=%(levelname)s | Module=%(module)s %(message)s'
         },
         'simple': {
-            'format': '| Severity=%(levelname)s | %(message)s'
+            'format': '| Severity=%(levelname)s %(message)s'
         },
     },
     'filters': {
