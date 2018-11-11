@@ -40,7 +40,7 @@ INSTALLED_APPS = [
 
     # Third-party Applications
     'rest_framework',
-    
+
     # My Apps
     'api',
 ]
@@ -128,3 +128,52 @@ STATIC_URL = '/static/'
 REDIS_HOST = 'localhost'
 
 REDIS_PORT = 6379
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '| %(asctime)s | Severity=%(levelname)s | Module=%(module)s | %(message)s'
+        },
+        'simple': {
+            'format': '| Severity=%(levelname)s | %(message)s'
+        },
+    },
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        },
+        # I always add this handler to facilitate separating loggings
+        'log_file': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': os.path.join(BASE_DIR, 'api.log'),
+            'maxBytes': 16777216,  # 16megabytes
+            'formatter': 'verbose'
+        }
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['console', 'log_file'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+        'apps': {
+            'handlers': ['console', 'log_file'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'INFO'
+    },
+}
