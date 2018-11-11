@@ -15,6 +15,7 @@ coveralls = "*"
 coreapi = "*"
 pygments = "*"
 markdown = "*"
+"autopep8" = "*"
 
 [requires]
 python_version = "3.5"
