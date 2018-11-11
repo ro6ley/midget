@@ -1,0 +1,20 @@
+language: python
+
+python:
+  - 3.7
+
+before_install:
+  - export PYTHONPATH=$HOME/builds/ro6ley/midget
+  - export PIP_USE_MIRRORS=true
+
+install:
+  - pip install -r requirements.txt
+
+script:
+  - python drfdiary/manage.py makemigrations api --settings=settings.testing
+  - python drfdiary/manage.py migrate --settings=settings.testing
+  - coverage run --source=midget midget/manage.py test --settings=settings.testing midget/api --noinput
+
+# run coveralls after successful tests
+after_success:
+  - coveralls
