@@ -37,6 +37,16 @@ class ShortenerTestCases(TestCase):
         fetch_response = self.client.get('/{}'.format(response.data['url']))
         # Confirm that it returns a redirect
         self.assertEqual(fetch_response.status_code, status.HTTP_302_FOUND)
+
+    def test_fetch_nonexisting_url(self):
+        """
+        Test that when a nonexisting shortened URL is accessed, we return
+        an error message
+        """
+
+        fetch_response = self.client.get('/xyzas')
+        # Confirm that it returns an error
+        self.assertEqual(fetch_response.status_code, status.HTTP_404_NOT_FOUND)        
     
     def test_shorten_invalid_url(self):
         """
