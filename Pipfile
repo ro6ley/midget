@@ -1,0 +1,16 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[dev-packages]
+"nose2" = "*"
+
+[packages]
+django = "*"
+django-redis = "*"
+djangorestframework = "*"
+redis = "*"
+
+[requires]
+python_version = "3.7"
