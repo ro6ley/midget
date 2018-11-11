@@ -67,3 +67,11 @@ class ShortenerTestCases(TestCase):
         response = self.client.delete('/{}'.format(created_url))
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(response.data.get('status'), "success")     
+
+    def test_delete_nonexisting_url(self):
+        """
+        Test that a nonexisting shortened url cannot be deleted
+        """
+        response = self.client.delete('/xyzas')
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+        self.assertEqual(response.data.get('status'), "error")          
