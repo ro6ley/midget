@@ -11,3 +11,7 @@
 **/.sonarlint
 
 **/db.sqlite3
+
+**/htmlcov
+
+.coverage
