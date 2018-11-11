@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.core.validators import URLValidator
 from django.http import HttpResponseRedirect
@@ -12,7 +13,8 @@ from rest_framework.response import Response
 from .shortener import create_url
 
 
-redis_instance = redis.StrictRedis(host='localhost', port=6379, db=0)
+redis_instance = redis.StrictRedis(host=settings.REDIS_HOST,
+                                   port=settings.REDIS_PORT, db=0)
 url_validator = URLValidator()
 
 
