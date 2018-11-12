@@ -16,6 +16,7 @@ coreapi = "*"
 pygments = "*"
 markdown = "*"
 "autopep8" = "*"
+django-cors-headers = "*"
 
 [requires]
 python_version = "3.5"
