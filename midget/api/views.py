@@ -39,7 +39,7 @@ def manage_links(request, link=None, *args, **kwargs):
                 'status': 'error',
                 'msg': 'Invalid URL. Check and try again.'
             }
-            logger.error("| Operation=ShortenURL | ResponseCode=400 | ResponseMsg=Cannot shorten {} | Status=error |".format(
+            logger.error("| Operation=ShortenURL | ResponseCode=400 | ResponseMsg=Cannot shorten {}, ValidationError | Status=error |".format(
                 request.data['url']))
             return Response(response, status=400)
 
@@ -68,7 +68,7 @@ def manage_links(request, link=None, *args, **kwargs):
 
             response = {
                 'count': count,
-                'msg': 'Found.',
+                'msg': 'Found {} shortened links.'.format(count),
                 'status': 'success',
                 'links': links
             }
@@ -80,7 +80,7 @@ def manage_links(request, link=None, *args, **kwargs):
             long_url = redis_instance.get(link)
             if long_url:
                 response = {
-                    'msg': 'Found.',
+                    'msg': 'Found shortened link.',
                     'status': 'success',
                     'link': long_url
                 }
