@@ -28,59 +28,43 @@
 <script>
 // import axios
 import axios from 'axios';
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   computed: mapState([
     'allLinks',
     'count',
     'responseMsg',
-    'errorMsg'
+    'errorMsg',
+    'apiUrl',
   ]),
   data () {
     return {
-      // allLinks: this.$store.state.allLinks,
-      // count: this.$store.state.count,
-      // errorMsg: this.$store.state.errorMsg,
-      // responseMsg: this.$store.state.responseMsg,
-      apiUrl: this.$store.state.apiUrl
     }
   },
   name: 'AllLinks',
   methods: {
     getAllLinks(){
-      this.errorMsg = '';
-      this.responseMsg = '';
       this.$store.dispatch('fetchAllLinks');
-      // this.$forceUpdate();
-      // axios
-      //   .get(this.$store.state.apiUrl + 'all')
-      //   .then(response => {
-      //     this.allLinks = response.data.links;
-      //     this.count = response.data.count;
-      //     this.responseMsg = response.data.msg;
-      //   })
-      //   .catch(err => {
-      //     this.errorMsg = err.response.data.msg;
-      //   });
+
     },
     deleteLink(linkId) {
-      this.errorMsg = '';
-      this.responseMsg = '';
-      this.$store.dispatch('deleteLink', linkId);
-      // axios
-      //   .delete(this.$store.state.apiUrl + linkId)
-      //   .then(response => {
-      //     delete this.allLinks[linkId];
-      //     this.responseMsg = response.data.msg;
-      //   })
-      //   .catch(err => {
-      //     this.errorMsg = err.response.data.msg;
-      //   });
+      axios
+        .delete(this.$store.state.apiUrl + linkId)
+        .then(response => {
+          delete this.allLinks[linkId];
+          this.$store.dispatch('deleteLink', linkId);
+          this.$store.dispatch('setResponseMsg', "Link deleted successfully.");
+          this.$forceUpdate();
+        })
+        .catch(err => {
+          console.err(err);
+          this.$store.dispatch('setErrorMsg', err.response.data.msg);
+        });
     },
-  },
-  mounted () {
-    this.$store.dispatch('fetchAllLinks');
+    ...mapActions({
+      // deleteLink: 'deleteLink',
+    })
   },
 }
 </script>
