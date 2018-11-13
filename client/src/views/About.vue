@@ -21,5 +21,8 @@ export default {
   components: {
     AllLinks,
   },
+  mounted () {
+    this.$store.dispatch('fetchAllLinks');
+  },  
 };
 </script>
