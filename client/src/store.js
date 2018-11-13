@@ -27,6 +27,12 @@ export default new Vuex.Store({
       delete state.allLinks[linkId];
       state.linksCount -= 1;
     },
+    setResponseMsg(state, msg) {
+      state.responseMsg = msg;
+    },
+    setErrorMsg(state, msg) {
+      state.errorMsg = msg;
+    },
   },
   actions: {
     fetchAllLinks({ commit }) {
@@ -34,20 +40,17 @@ export default new Vuex.Store({
         .get(this.state.apiUrl + 'all')
         .then((response) => {
           commit('setLinks', response.data);
+          commit('setResponseMsg', response.data.msg);
         })
         .catch((err) => {
-          console.error(err);
+          commit('setErrorMsg', err.response.data.msg);
         });
     },
     deleteLink({ commit }, linkId) {
-      axios
-        .delete(this.state.apiUrl + linkId)
-        .then((response) => {
-          commit('deleteLink', linkId);
-        })
-        .catch((err) => {
-          console.error(err);
-        });
+      commit('deleteLink', linkId);
+    },
+    setResponseMsg({ commit }, msg) {
+      commit('setResponseMsg', msg);
     },
   },
 });
