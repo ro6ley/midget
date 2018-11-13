@@ -13,9 +13,6 @@ new Vue({
   router,
   store,
   created() {
-    // what to do when the element is created
-    console.log('loaded...');
-
     // load all links when the page is loaded first time
     this.$store.dispatch('fetchAllLinks');
   },
