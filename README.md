@@ -5,11 +5,17 @@
 This is a url shortening application. The API receives a url and returns a shortened version
 of the url, similar to [Bit.ly](http://bit.ly) and [Google URL Shortener](http://goo.gl).
 
+![Screenshot](https://user-images.githubusercontent.com/8082197/48435148-ce74d100-e78c-11e8-9bba-121f43019aec.png)
+
+
 The building blocks are:
 
-* Python 3.5
-* Django 2.1
-* Redis
+* [Django](https://www.djangoproject.com/) - The web framework used.
+* [Django REST Framework](http://www.django-rest-framework.org/) - The framework used to build the API.
+* [Vue JS](https://vuejs.org/) - The framework used to build the front-end application.
+* [VueX](https://vuex.vuejs.org/) - The state management pattern + library for Vue.js.
+* [Bootstrap + Vue](https://bootstrap-vue.js.org/) - The front-end CSS library for Vue JS.
+* [Redis](https://redis.io/) - The in-memory data structure store, used as the database.
 
 ## Getting Started
 
@@ -17,8 +23,9 @@ These instructions will get you a copy of the project up and running on your loc
 
 ## Prerequisites
 
-You need the following to be able to run the project:
-* Python 3 installed
+You need the following installed in your machine to be able to run the project:
+* Python 3.5
+* Node 8+
 * Redis
 * Pipenv
 * Docker (Optional)
@@ -36,6 +43,7 @@ These are instructions for setting up Diary API in development environment.
 ```
   $ cd midget_project
   $ pipenv install
+  $ cd client && npm install && cd ..
 ```
 
 * create database tables:
@@ -44,19 +52,24 @@ These are instructions for setting up Diary API in development environment.
   $ ./midget/manage.py migrate
 ```
 
-* run development server:
+* start the redis server and run development server:
 ```
+  $ redis-server /usr/local/etc/redis.conf
   $ ./midget/manage.py runserver
 ```
 
-The site should now be running at `http://localhost:8080/`.
+* start the client:
+```
+  $ cd client && npm run serve
+```
 
-To log into Django administration site as a super user,
-visit `http://localhost:8080/admin`
+The front-end should now be running at `http://localhost:8080/`.
+
+The API will be running on `http://localhost:8000/`
 
 ## Documentation
 
-Once up and running the documentation is available at: `http://localhost:8080/docs`
+Once up and running the API documentation is available at: `http://localhost:8000/docs`
 
 The endpoints in summary:
 
@@ -75,12 +88,6 @@ To run the tests:
 ```
   $ ./midget/manage.py test --settings=settings.testing
 ```
-
-
-## Built With
-
-* [Django](https://www.djangoproject.com/) - The web framework used
-* [Django REST Framework](http://www.django-rest-framework.org/) - The framework used to build the API
 
 ## Authors
 
