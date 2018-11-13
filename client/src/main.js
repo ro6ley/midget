@@ -13,8 +13,7 @@ new Vue({
   router,
   store,
   created() {
-    // load all links when the page is loaded first time
-    this.$store.dispatch('fetchAllLinks');
+    // what to do when the application is loaded.
   },
   render: h => h(App),
 }).$mount('#app');
