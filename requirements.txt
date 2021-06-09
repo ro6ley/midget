@@ -1,6 +1,6 @@
 -i https://pypi.org/simple/
 autopep8==1.4.2
-certifi==2020.12.5
+certifi==2021.5.30
 chardet==4.0.0
 coreapi==2.3.3
 coreschema==0.0.4
@@ -8,7 +8,7 @@ coverage==5.5
 coveralls==1.5.1
 django-cors-headers==2.4.0
 django-redis==4.9.0
-django==2.2.20
+django==2.2.22
 djangorestframework==3.11.2
 docopt==0.6.2
 idna==2.10
@@ -23,4 +23,4 @@ redis==2.10.6
 requests==2.25.1
 sqlparse==0.4.1
 uritemplate==3.0.1
-urllib3==1.26.4
+urllib3==1.26.5
